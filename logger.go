@@ -1,9 +1,9 @@
 package logging
 
 import (
+	"fmt"
 	"log"
 	"os"
-	"fmt"
 )
 
 var (
@@ -53,7 +53,7 @@ type Logger struct {
 
 func GetDefaultLogger() *log.Logger {
 	logFlag := log.LstdFlags | log.Lmicroseconds
-	return log.New(os.Stdout, "[default] ", logFlag) 
+	return log.New(os.Stdout, "[default] ", logFlag)
 }
 
 func (l *Logger) isVerbose(lvl Level) bool {
@@ -66,31 +66,31 @@ func (l *Logger) isVerbose(lvl Level) bool {
 
 func (l *Logger) Debug(format string, v ...interface{}) {
 	if l.isVerbose(DEBUG) {
-		l.Logger.Printf("[" + DEBUG.Name + "] " + format, v...)
+		l.Logger.Printf("["+DEBUG.Name+"] "+format, v...)
 	}
 }
 
 func (l *Logger) Info(format string, v ...interface{}) {
 	if l.isVerbose(INFO) {
-		l.Logger.Printf("[" + INFO.Name + "] " + format, v...)
+		l.Logger.Printf("["+INFO.Name+"] "+format, v...)
 	}
 }
 
-func (l *Logger) Warn(format string, v ...interface{}){
+func (l *Logger) Warn(format string, v ...interface{}) {
 	if l.isVerbose(WARN) {
-		l.Logger.Printf("[" + WARN.Name + "] " + format, v...)
+		l.Logger.Printf("["+WARN.Name+"] "+format, v...)
 	}
 }
 
-func (l *Logger) Error(format string, v ...interface{}){
+func (l *Logger) Error(format string, v ...interface{}) {
 	if l.isVerbose(ERROR) {
-		l.Logger.Printf("[" + ERROR.Name + "] " + format, v...)
+		l.Logger.Printf("["+ERROR.Name+"] "+format, v...)
 	}
 }
 
-func (l *Logger) Panic(format string, v ...interface{}){
+func (l *Logger) Panic(format string, v ...interface{}) {
 	if l.isVerbose(PANIC) {
-		l.Logger.Printf("[" + PANIC.Name + "] " + format, v...)
+		l.Logger.Printf("["+PANIC.Name+"] "+format, v...)
 	}
 	panic(fmt.Sprintf(format, v...))
 }

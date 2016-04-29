@@ -1,8 +1,8 @@
 package logging
 
 import (
-	"log"
 	"errors"
+	"log"
 )
 
 var (
@@ -18,8 +18,8 @@ var (
 func init() {
 	loggers = map[string]*Logger{}
 	Default = &Logger{
-		Name: "default",
-		Level: DEBUG,
+		Name:   "default",
+		Level:  DEBUG,
 		Logger: GetDefaultLogger(),
 	}
 }
@@ -42,8 +42,8 @@ func SetLogger(name string, level Level, logger *log.Logger) {
 	}
 
 	l = &Logger{
-		Name: name,
-		Level: level,
+		Name:   name,
+		Level:  level,
 		Logger: logger,
 	}
 
