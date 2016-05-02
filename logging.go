@@ -39,12 +39,12 @@ func SetLogger(name string, level Level, logger *log.Logger) {
 	if ok {
 		l.Level = level
 		l.Logger = logger
-	}
-
-	l = &Logger{
-		Name:   name,
-		Level:  level,
-		Logger: logger,
+	} else {
+		l = &Logger{
+			Name:   name,
+			Level:  level,
+			Logger: logger,
+		}
 	}
 
 	loggers[l.Name] = l
