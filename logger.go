@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime/debug"
 )
 
 var (
@@ -86,6 +87,11 @@ func (l *Logger) Error(format string, v ...interface{}) {
 	if l.isVerbose(ERROR) {
 		l.Logger.Printf("["+ERROR.Name+"] "+format, v...)
 	}
+}
+
+func (l *Logger) Trace(recovered interface{}, format string, v ...interface{}) {
+	msg := fmt.Sprintf("["+ERROR.Name+"] "+format, v...)
+	l.Logger.Printf("%s\npanic: %v\n%s", msg, recovered, debug.Stack())
 }
 
 func (l *Logger) Panic(format string, v ...interface{}) {
