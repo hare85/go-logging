@@ -27,7 +27,9 @@ func init() {
 func GetLogger(name string) *Logger {
 	logger, ok := loggers[name]
 	if !ok {
-		Default.Warn("cannot find logger \"" + name + "\" - return to default logger")
+		if name != "default" {
+			Default.Warn("cannot find logger \"" + name + "\" - return to default logger")
+		}
 		return Default
 	}
 
